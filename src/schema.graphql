@@ -11,11 +11,12 @@ type User {
 
 enum Role {
 	ADMIN
+	CUSTOMER
 }
 
 input UserCreateInput {
 	name: String!
-	password:String!
+	password: String!
 }
 
 type AuthPayload {
