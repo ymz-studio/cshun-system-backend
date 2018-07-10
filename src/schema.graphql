@@ -4,19 +4,28 @@ directive @hasRole(role: [Role]) on FIELD | FIELD_DEFINITION
 
 directive @isAuthenticated on FIELD | FIELD_DEFINITION
 
-scalar Upload
+type User {
+	name: String!
+	password: String!
+}
+
+enum Role {
+	ADMIN
+}
+
+input UserCreateInput {
+	name: String!
+	password:String!
+}
+
+type AuthPayload {
+	token: String
+	user: User
+}
 
 type Query {
 	#admin
-	users(
-		where: UserWhereInput
-		orderBy: UserOrderByInput
-		skip: Int
-		after: String
-		before: String
-		first: Int
-		last: Int
-	): [User] @hasRole(role: [ADMIN])
+	users: [User] @hasRole(role: [ADMIN])
 	#auth
 	me: User @isAuthenticated
 }
@@ -25,9 +34,4 @@ type Mutation {
 	# auth
 	signUp(data: UserCreateInput!): AuthPayload
 	login(name: String!, password: String!): AuthPayload
-}
-
-type AuthPayload {
-	token: String
-	user: User
 }
