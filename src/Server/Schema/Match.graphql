@@ -1,0 +1,8 @@
+type Match {
+  _id: ID!,
+  sellerId: ID!,
+  customerId: ID!,
+  matchScore: Float, # 0 - 100000000
+  sellerSigned: Boolean,
+  customerSigned: Boolean
+}

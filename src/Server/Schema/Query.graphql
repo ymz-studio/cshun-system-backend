@@ -1,0 +1,10 @@
+type Query {
+  listAllSeller: [Seller!]!,
+  listAllCustomer: [Customer!]!,
+  listAllMatch: [Match!]!,
+  listAllSigned: [Match!]!,
+  listTopSellerMatch(sellerId: ID!, num: Int = 3),
+  listTopCustomerMatch(CustomerId: ID!, num: Int = 3),
+  me: UserInfo!,
+  authenticate(authInput: AuthInput!): UserInfo!
+}

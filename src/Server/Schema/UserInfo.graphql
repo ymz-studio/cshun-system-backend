@@ -1,0 +1,14 @@
+type UserInfo {
+  _id: ID!,
+  phone: String!,
+  address: String!,
+  name: String!,
+  idCard: String
+}
+
+input UserInput {
+  phone: String!,
+  address: String!,
+  name: String!,
+  idCard: String
+}

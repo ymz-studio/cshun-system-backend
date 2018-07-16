@@ -1,0 +1,16 @@
+input SellerInput {
+  sellType: String!,
+  minPrice: Float!,
+  deadline: Int!, # 用毫秒表示
+  sellAmount: Int!,
+  seller: UserInfo!
+}
+
+type Seller {
+  _id: ID!,
+  sellType: String!,
+  minPrice: Float!,
+  deadline: Int!, # 用毫秒表示
+  sellAmount: Int!,
+  seller: UserInfo!
+}

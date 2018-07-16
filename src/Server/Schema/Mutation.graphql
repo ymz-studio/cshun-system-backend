@@ -1,0 +1,11 @@
+type Mutation {
+  addNewSeller(sellerInput: SellerInput!): ID!,
+  modifySeller(_id: ID!, to: SellerInput!): Boolean, # null here
+  addNewCustomer(customerInput: CustomerInput!): ID!,
+  modifyCustomer(_id: ID!, to: CustomerInput!): Boolean, # null here
+  addNewUser(authInput: AuthInput!, role: Role!): ID!,
+  logout: Boolean,
+  modifyUserInfo(_id: ID!, to: UserInput): Boolean,
+  sellerSignMatch(_id: ID!, sellerId: ID!): Boolean,
+  customerSignMatch(_id: ID!, customerId: ID!): Boolean,
+}

@@ -1,0 +1,14 @@
+input CustomerInput {
+  buyType: String!,
+  maxPrice: Float!,
+  buyAmount: Int!,
+  customer: UserInfo!
+}
+
+type Customer {
+  _id: ID!,
+  buyType: String!,
+  maxPrice: Float!,
+  buyAmount: Int!,
+  customer: UserInfo!
+}

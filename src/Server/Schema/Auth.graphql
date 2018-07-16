@@ -1,0 +1,20 @@
+type Auth {
+  _id: ID!,
+  certification: String!,
+  password: String!,
+  salt: String!,
+  role: Role!,
+  createAt: Int!,
+  updateAt: Int!
+}
+
+input AuthInput {
+  certification: String!,
+  password: String!
+}
+
+enum Role {
+  admin
+  seller
+  customer
+};
