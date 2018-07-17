@@ -8,7 +8,7 @@ const Customer = mongoose.model("Customer", mongoose.Schema({
   buyType: String,
   maxPrice: Number,
   buyAmount: Number,
-  customer: UserInfo
+  customer: UserInfo.schema
 }));
 
 module.exports = {
@@ -51,7 +51,7 @@ module.exports = {
     return result._id;
   },
 
-  modifyCustomer({ _id, to }){
+  async modifyCustomer({ _id, to }){
 
     if( !isLogined(req) ){
       return res.status( 403 ).end();

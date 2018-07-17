@@ -9,7 +9,7 @@ const Seller = mongoose.model("Seller", mongoose.Schema({
   minPrice: Number,
   deadline: Number,
   sellAmount: Number,
-  seller: UserInfo
+  seller: UserInfo.schema
 }));
 
 module.exports = {
@@ -60,7 +60,7 @@ module.exports = {
     if( !isLogined(req) ){
       return res.status( 403 ).end();
     }
-    
+
     if( !hasRole( req, "admin" ) || isSelf( req, _id ) ){
       throw "没有权限";
     }

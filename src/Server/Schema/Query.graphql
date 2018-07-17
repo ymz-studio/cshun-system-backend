@@ -3,8 +3,8 @@ type Query {
   listAllCustomer: [Customer!]!,
   listAllMatch: [Match!]!,
   listAllSigned: [Match!]!,
-  listTopSellerMatch(sellerId: ID!, num: Int = 3),
-  listTopCustomerMatch(CustomerId: ID!, num: Int = 3),
+  listTopSellerMatch(sellerId: ID!, num: Int): [Match!]!,
+  listTopCustomerMatch(CustomerId: ID!, num: Int): [Match!]!,
   me: UserInfo!,
   authenticate(authInput: AuthInput!): UserInfo!
 }

@@ -32,7 +32,7 @@ module.exports = {
       //path: "/",
       sameSite: true,
       httpOnly: true,
-      secure: true // only https
+      secure: false // only https
     }
   },
   compression: {

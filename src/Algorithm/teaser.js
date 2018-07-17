@@ -19,21 +19,21 @@ function scoreTime( timeDiff ){
   return minusExp( timeDiff );
 }
 
-module.exports = function countScore( seller, buyer ){
-  if( seller.signed || buyer.signed ){
+module.exports = function countScore( seller, customer ){
+  if( seller.signed || customer.signed ){
     // signed match wont get any score
     return -Infinity;
   }
 
-  if( seller.sellType !== buyer.wantedType ){
+  if( seller.sellType !== customer.buyType ){
     return -Infinity;
   }
 
-  if( seller.amount < buyer.amount ){
+  if( seller.amount < customer.amount ){
     return -Infinity;
   }
 
-  if( buyer.maxPrice < seller.minPrice ){
+  if( customer.maxPrice < seller.minPrice ){
     return -Infinity;
   }
 
@@ -43,7 +43,7 @@ module.exports = function countScore( seller, buyer ){
   if( timeDiff <= emergencyTime ){
     timeScore = highestWeight;
   } else {
-    timeScore = buyer.amount * scoreTime( timeDiff );
+    timeScore = customer.amount * scoreTime( timeDiff );
   }
 
   const min = seller.minPrice;
@@ -53,10 +53,10 @@ module.exports = function countScore( seller, buyer ){
   */
   const expected = ( min + max ) / 2;
 
-  const sellerPriceScore = ( expected - min ) * buyer.amount;
-  const buyerPriceScore = ( max - expected ) * buyer.amount;
+  const sellerPriceScore = ( expected - min ) * customer.amount;
+  const customerPriceScore = ( max - expected ) * customer.amount;
 
-  const weighted = ( 0.3 * buyerPriceScore + 0.7 * sellerPriceScore ) / ( buyerPriceScore + sellerPriceScore );
+  const weighted = ( 0.3 * customerPriceScore + 0.7 * sellerPriceScore ) / ( customerPriceScore + sellerPriceScore );
 
   return timeScore + weighted;
 }

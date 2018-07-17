@@ -3,14 +3,20 @@ const mongoose = require("mongoose");
 const { hasRole, isSelf, logined } = require("../Utils/authorizeKit");
 
 const Match = mongoose.model("Match", mongoose.Schema({
-  sellerId: mongoose.Types.ObjectId,
-  customerId: mongoose.Types.ObjectId,
+  sellerId: mongoose.Schema.ObjectId,
+  customerId: mongoose.Schema.ObjectId,
   matchScore: Number,
-  sellerSigned: Boolean,
-  customerSigned: Boolean
+  sellerSigned: {
+    type: Boolean,
+    default: false
+  },
+  customerSigned: {
+    type: Boolean,
+    default: false
+  }
 }));
 
-const decrease = ( x, y ) => x.matchScore < y.matchScore );
+const decrease = ( x, y ) => x.matchScore < y.matchScore;
 
 module.exports = {
   listAllMatch( $, { req, res } ){
@@ -29,7 +35,7 @@ module.exports = {
     return Match.find({ signed: true });
   },
 
-  async listTopSellerMatch( { sellerId, num }, { req, res, next } ){
+  async listTopSellerMatch( { sellerId, num = 3 }, { req, res, next } ){
     if( !isLogined( req ) ){
       res.status( 403 ).end();
       return;
@@ -53,7 +59,7 @@ module.exports = {
     return results.slice( 0, num );
   },
 
-  async listTopCustomerMatch( { customerId, num }, { req, res, next } ){
+  async listTopCustomerMatch( { customerId, num = 3}, { req, res, next } ){
     if( !isLogined( req ) ){
       res.status( 403 ).end();
       return;

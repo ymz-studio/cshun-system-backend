@@ -38,7 +38,7 @@ const certificationThrottler = new ExpireBST(
 );
 
 module.exports = {
-  async authenticate({ authInput }, { req, res , next }){
+  async authenticate({ authInput }, { req, res, next }){
     req.session.authenticated = "";
 
     if( !__certificationRegex__.test( certification ) ){
@@ -52,7 +52,7 @@ module.exports = {
       certification,
       password
     } = authInput;
-    
+
     try {
       var auth = await Auth.find({ certification });
     } catch( e ){
