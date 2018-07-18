@@ -3,7 +3,7 @@ input SellerInput {
   minPrice: Float!,
   deadline: Int!, # 用毫秒表示
   sellAmount: Int!,
-  seller: UserInfo!
+  seller: UserInput!
 }
 
 type Seller {

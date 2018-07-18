@@ -8,4 +8,5 @@ type Mutation {
   modifyUserInfo(_id: ID!, to: UserInput): Boolean,
   sellerSignMatch(_id: ID!, sellerId: ID!): Boolean,
   customerSignMatch(_id: ID!, customerId: ID!): Boolean,
+  authenticate(authInput: AuthInput!): UserInfo!
 }

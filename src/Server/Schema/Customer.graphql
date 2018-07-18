@@ -2,7 +2,7 @@ input CustomerInput {
   buyType: String!,
   maxPrice: Float!,
   buyAmount: Int!,
-  customer: UserInfo!
+  customer: UserInput!
 }
 
 type Customer {

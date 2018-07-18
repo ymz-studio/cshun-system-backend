@@ -92,11 +92,13 @@ function __generateRoutes( root ){
   const router = new express.Router();
   for( let [url, route] of Object.entries( root ) ){
     if( _.isObject( route ) && !_.isFunction( route ) && !_.isArray( route ) ){
-      router.use( path.resolve( "/", url ), __generateRoutes( route ) );
-    } else if( !route.method ){
-      router.post( path.resolve( "/", url ), route.api || route );
+      if( route.method ){
+        router[route.method]( url, route.api );
+      } else {
+        router.use( url, __generateRoutes( route ) );
+      }
     } else {
-      router[route.method]( path.resolve( "/", url ), route.api );
+      router.post( url, route );
     }
   }
   return router;
@@ -104,11 +106,14 @@ function __generateRoutes( root ){
 
 for( let [url, route] of Object.entries( routes ) ){
   if( _.isObject( route ) && !_.isFunction( route ) && !_.isArray( route ) ){
-    app.use( path.resolve( "/api", url ), __generateRoutes( route ) );
-  } else if( !route.method ){
-    app.post( path.resolve( "/api", url ), route.api || route );
+    if( route.method ){
+      app[route.method]( url, route.api );
+      console.log( url );
+    } else {
+      app.use( url, __generateRoutes( route ) );
+    }
   } else {
-    app[route.method]( path.resolve( "/api", url ), route.api );
+    app.post( url, route );
   }
 }
 

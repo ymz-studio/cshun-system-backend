@@ -5,6 +5,5 @@ type Query {
   listAllSigned: [Match!]!,
   listTopSellerMatch(sellerId: ID!, num: Int): [Match!]!,
   listTopCustomerMatch(CustomerId: ID!, num: Int): [Match!]!,
-  me: UserInfo!,
-  authenticate(authInput: AuthInput!): UserInfo!
+  me: UserInfo!
 }
