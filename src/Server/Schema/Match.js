@@ -24,7 +24,7 @@ module.exports = {
       res.status( 403 ).end();
       return;
     }
-    return Match.find({ signed: false });
+    return Match.find({ sellerSigned: false, customerSigned: false });
   },
 
   listAllSigned( $, { req, res } ){
@@ -32,7 +32,7 @@ module.exports = {
       res.status( 403 ).end();
       return;
     }
-    return Match.find({ signed: true });
+    return Match.find({ sellerSigned: true, customerSigned: true });
   },
 
   async listTopSellerMatch( { sellerId, num = 3 }, { req, res, next } ){
